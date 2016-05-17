@@ -1,4 +1,20 @@
+<% if @buses.empty? %>
+<%= redirect_to new_location_path %>
+<%end%>
+
 <p id="notice"><%= notice %></p>
+
+<h1>Here are your bus options!</h1>
+<h3 class="text-muted">Your Current Location</h3>
+<%= @location.full_street_address %> <%= link_to fa_icon('pencil', text: 'Edit'), edit_location_path(@location) %>
+
+<% @buses.each do |bus| %>
+  <p>
+    <strong> Route: </strong>  <% bus["ROUTE"]%> <%=bus["DIRECTION"] %><br>
+    <strong> Bus Number: </strong>  <%=bus["VEHICLE"] %><br>
+    <strong> Next Stop: </strong>  <%=bus["TIMEPOINT"] %><br>
+  </p>
+<%end%>
 
 <p>
   <strong>Street address:</strong>
